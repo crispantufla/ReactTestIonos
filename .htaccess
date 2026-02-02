@@ -1,16 +1,16 @@
 DirectoryIndex dist/index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /ReactTestIonos/
+  # No forzamos Base para que sea relativo automaticamente
+  # RewriteBase /
 
-  # Mapear assets a carpeta dist
+  # Mapear assets a carpeta dist (Rutas relativas)
   RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
   RewriteRule ^vite.svg$ dist/vite.svg [L]
 
-  # Fallback SPA
-  RewriteRule ^index\.html$ - [L]
+  # Fallback SPA (Rutas relativas)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_URI} !^/ReactTestIonos/dist/
-  RewriteRule . /ReactTestIonos/dist/index.html [L]
+  RewriteCond %{REQUEST_URI} !dist/
+  RewriteRule . dist/index.html [L]
 </IfModule>

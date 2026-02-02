@@ -2,6 +2,12 @@ DirectoryIndex dist/index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /ReactTestIonos/
+
+  # Mapear assets a carpeta dist
+  RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
+  RewriteRule ^vite.svg$ dist/vite.svg [L]
+
+  # Fallback SPA
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
